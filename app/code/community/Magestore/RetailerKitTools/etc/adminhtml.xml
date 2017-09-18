@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+	<config>
+		<menu>
+        <retailerkittools module="retailerkittools" translate="title">
+            <title>Retailer Kit Tool</title>
+            <sort_order>71</sort_order>
+            <children>
+            	<dashboard module="retailerkittools" translate="title">
+                    <title>Dashboard</title>
+                    <sort_order>0</sort_order>
+                    <action>adminhtml/retailerkittools_dashboard</action>
+                </dashboard>
+                <invoicegenerator module="retailerkittools" translate="title">
+                    <title>Invoice Generator</title>
+                    <sort_order>10</sort_order>
+                    <action>adminhtml/retailerkittools_index/invoicegenerator</action>
+                </invoicegenerator>
+                <purchaseorder module="retailerkittools" translate="title">
+                    <title>Purchase Order Template</title>
+                    <sort_order>20</sort_order>
+                    <action>adminhtml/retailerkittools_index/purchaseorder</action>
+                </purchaseorder>
+                <printshippinglabel module="retailerkittools" translate="title">
+                    <title>Shipping Label Template</title>
+                    <sort_order>30</sort_order>
+                    <action>adminhtml/retailerkittools_index/printshippinglabel</action>
+                </printshippinglabel>
+                <makebarcode module="retailerkittools" translate="title">
+                    <title>Barcode Generator</title>
+                    <sort_order>40</sort_order>
+                    <action>adminhtml/retailerkittools_index/makebarcode</action>
+                </makebarcode>
+                <calcpaypalfee module="retailerkittools" translate="title">
+                    <title>Paypal Fee Calculator</title>
+                    <sort_order>50</sort_order>
+                    <action>adminhtml/retailerkittools_index/calcpaypalfee</action>
+                </calcpaypalfee>
+                <setting>
+                    <title>Configuration</title>
+                    <sort_order>400</sort_order>
+                    <!-- <action>adminhtml/system_config/edit/section/retailerkittools</action> -->
+                    <children>
+                        <vendor module="retailerkittools" translate="title">
+                        <title>Manage Vendor</title>
+                        <sort_order>100</sort_order>
+                        <action>adminhtml/retailerkittools_vendor</action>
+                        </vendor>
+                        <company_info module="retailerkittools" translate="title">
+                            <title>Company Information</title>
+                            <sort_order>150</sort_order>
+                            <action>adminhtml/retailerkittools_index/companyinfo</action>
+                        </company_info>
+                        <shippingsender module="retailerkittools" translate="title">
+                            <title>Shipping Sender Information</title>
+                            <sort_order>200</sort_order>
+                            <action>adminhtml/retailerkittools_index/shippingsender</action>
+                        </shippingsender>
+                    </children>
+                </setting>
+                <!-- <setting module="retailerkittools" translate="title">
+                    <title>Settings</title>
+                    <sort_order>400</sort_order>
+                    <action>adminhtml/system_config/edit/section/retailerkittools</action>
+                </setting> -->
+            </children>
+        </retailerkittools>
+    </menu>
+	<acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <retailerkittools translate="title" module="retailerkittools">
+                                        <title>Retailer Kit Tools</title>
+                                        <sort_order>0</sort_order>
+                                    </retailerkittools>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                    <retailerkittools module="retailerkittools" translate="title">
+                        <title>Retailer Kit Tools</title>
+                        <sort_order>71</sort_order>               
+                        <children>
+                            <vendor module="retailerkittools" translate="title">
+                                <title>Manage Vendor</title>
+                                <sort_order>0</sort_order>
+                                <action>adminhtml/retailerkittools_vendor</action>
+                            </vendor>  
+                            <dashboard module="retailerkittools" translate="title">
+                                <title>Dashboard</title>
+                                <sort_order>10</sort_order>
+                                <action>adminhtml/retailerkittools_dashboard</action>
+                            </dashboard>       
+                            <company_info module="retailerkittools" translate="title">
+                                <title>Company Information</title>
+                                <sort_order>20</sort_order>
+                                <action>adminhtml/retailerkittools_index/companyinfo</action>
+                            </company_info>
+                            <shippingsender module="retailerkittools" translate="title">
+                                <title>Shipping Sender Information</title>
+                                <sort_order>30</sort_order>
+                                <action>adminhtml/retailerkittools_index/shippingsender</action>
+                            </shippingsender>
+                            <setting module="retailerkittools" translate="title">
+                                <title>Settings</title>
+                                <sort_order>40</sort_order>
+                                <action>adminhtml/system_config/edit/section/retailerkittools</action>
+                            </setting>
+                        </children>
+                    </retailerkittools>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

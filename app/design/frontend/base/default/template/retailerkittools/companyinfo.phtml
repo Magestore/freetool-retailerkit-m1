@@ -1,0 +1,88 @@
+<?php
+	$helper = Mage::helper('retailerkittools'); 
+	$imgPath = Mage::getBaseUrl('media') . 'barcode/' .$helper->getRetailerKitToolsConfig('company','company_logo');
+?>
+<section class="section section--border" id="ToolContent">
+  	<div class="page-width">
+		<div class="form-section">
+         	<div class="section-heading">
+            	<h1 class="section-heading__heading heading--1"><?php echo $this->__('Company Information') ?></h1>
+         	</div>
+      	</div>
+  		<div class="section-block col-md-12">
+	  		<form id="customerInfoForm" action="<?php echo $this->getUrl('retailerkittools/index/savecompanyinfo') ?>" enctype="multipart/form-data"  accept-charset="UTF-8" method="post">   
+	    		<div class="form-section col-md-12">
+	    			<div class="form-header">
+		               <h3 class="form-header__heading">Enter Company information</h3>
+		            </div>
+		      		<div class="section-input-field col-md-8">
+						<div class="form-input-inline">
+							<div class="form-group col-md-6">
+								<input type="text" name="company[company_name]" id="company_company_name" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_name') ?>" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Company name') ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<input type="text" name="company[company_email]" id="company_email" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_email') ?>" class="form-control required-entry col-md-12 validate-email" placeholder="<?php echo $this->__('Email address') ?>">
+							</div>
+						</div>
+						<div class="form-input-inline">
+							<div class="form-group col-md-12">
+								<input type="text" name="company[company_address]" id="company_company_address" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_address') ?>" class="form-control required-entry" placeholder="<?php echo $this->__('Address') ?>">
+							</div>
+						</div>
+						<div class="form-input-inline">
+							<div class="form-group col-md-6">
+								<input type="text" name="company[company_city]" id="company_company_city" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_city') ?>" class="form-control required-entry" placeholder="<?php echo $this->__('City') ?>">
+							</div>
+							<div class="form-group col-md-6">
+								<input type="text" name="company[company_zipcode]" id="company_zipcode" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_zipcode') ?>" class="form-control required-entry" placeholder="<?php echo $this->__('Zip/Postcode') ?>">
+							</div>
+						</div>
+						<div class="form-input-inline">
+							<div class="form-group col-md-6">
+								<?php echo $this->getCountryHtmlSelect() ?>
+							</div>
+							<div class="form-group col-md-6">
+				                <div class="input-box">
+				                    <select id="company_province_id" name="company[province_id]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="validate-select" style="display:none;">
+				                       <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+				                    </select>
+				                    <script type="text/javascript">
+				                    //<![CDATA[
+				                        $('company_province_id').setAttribute('defaultValue',  "<?php echo $helper->getRetailerKitToolsConfig('company', 'company_state_id') ?>");
+				                    //]]>
+				                    </script>
+				                    <input type="text" id="company_province" name="company[province]" value="<?php echo $helper->getRetailerKitToolsConfig('company','company_state') ?>"  title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
+				                </div>
+							</div>
+						</div>
+					</div>
+					<div class="section-upload col-md-4">
+						<div class="muted-box-container--logo-upload muted-box-container">
+						  <div class="muted-box__content">
+						      <div class="muted-box__icon-container">
+						        <img class="announcement-image " src="<?php echo $imgPath ?>" alt="">
+						      </div>		      
+						          <p><?php echo $this->__('Add your logo by browsing from your device. (allow png, gif, jpeg, jpg)') ?></p>
+						          <input type="file" name="company_logo" class="file-upload" data-parsley-ui-enabled="false">
+
+						  </div>
+						</div>
+					</div> 
+	    		</div>	    		 
+				<div class="section-input-field col-md-12">
+	      			<div class="form-input-inline">
+			  			<div class="form-group col-md-12">
+				      		<button name="button" type="submit" class="btn btn-primary btn-lg pull-right" id="Submit"><?php echo $this->__('Save') ?></button>
+				      	</div>
+				    </div>
+				</div>
+			</form>
+		</div>
+  	</div>
+</section>
+<script type="text/javascript">
+//<![CDATA[
+	var customerForm = new VarienForm('customerInfoForm');
+    new RegionUpdater('company_country', 'company_province', 'company_province_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+//]]>
+</script>

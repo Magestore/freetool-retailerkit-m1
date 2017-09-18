@@ -1,0 +1,230 @@
+<?xml version="1.0"?>
+<config>
+	  <tabs>
+        <magestore translate="label">
+            <label>Magestore Extension</label>
+            <sort_order>401</sort_order>
+        </magestore>
+    </tabs>
+	  <sections>
+		<retailerkittools  translate="label" module="retailerkittools">                    
+  		<!-- <label>Company Information</label> -->
+  		<tab>retailerkittools</tab>
+  		<frontend_type>text</frontend_type>
+  		<sort_order>0</sort_order>
+  		<show_in_default>1</show_in_default>
+  		<show_in_website>1</show_in_website>
+  		<show_in_store>1</show_in_store>            
+					<groups>
+				    <company translate="label"> 
+  					  <label>Company Information</label>
+  					  <frontend_type>text</frontend_type>
+  					  <sort_order>0</sort_order>
+  					  <show_in_default>1</show_in_default>
+  					  <show_in_website>1</show_in_website>
+  					  <show_in_store>1</show_in_store>
+  				       <fields>
+                            <company_name translate="label">
+                              <label>Company Name</label>
+  							<frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_name>
+                            <company_email translate="label">
+                              <label>Company  Email</label>
+  							<frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_email>
+                            <company_address translate="label">
+                              <label>Company Address</label>
+  							<frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_address>
+                            <company_city translate="label">
+                              <label>City</label>
+  							<frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_city>
+                            <company_zipcode translate="label">
+                              <label>Zipcode</label>
+  							<frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_zipcode>
+                            <company_country translate="label">
+                              <label>Country</label>
+                              <frontend_type>select</frontend_type>
+                              <source_model>adminhtml/system_config_source_country</source_model>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_country>
+                            <company_state_id translate="label">
+                              <label>State</label>
+                              <frontend_type>select</frontend_type>
+                              <source_model>adminhtml/system_config_source_allregion</source_model>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_state_id>
+                            <company_state translate="label">
+                              <label>State</label>
+                              <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_state>
+                            <company_logo translate="label">
+                              <label>Logo</label>
+                              <frontend_type>image</frontend_type>
+                              <backend_model>adminhtml/system_config_backend_image</backend_model>
+                              <upload_dir config="system/filesystem/media" scope_info="1">barcode</upload_dir>
+                              <base_url type="media" scope_info="1">barcode</base_url>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </company_logo>
+  					   </fields>
+					   </company>
+             <shipping_sender translate="label"> 
+              <label>Shipping Sender Information</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+                 <fields>
+                            <first_name translate="label">
+                              <label>First Name</label>
+                <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </first_name>
+                            <last_name translate="label">
+                              <label>Last Name</label>
+                <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </last_name>
+                            <email translate="label">
+                              <label>Email Address</label>
+                <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </email>
+                            <address translate="label">
+                              <label>Address</label>
+                <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </address>
+                            <city translate="label">
+                              <label>City</label>
+                <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </city>
+                            <zipcode translate="label">
+                              <label>Zipcode</label>
+                <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </zipcode>
+                            <country translate="label">
+                              <label>Country</label>
+                              <frontend_type>select</frontend_type>
+                              <source_model>adminhtml/system_config_source_country</source_model>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </country>
+                            <state_id translate="label">
+                              <label>State</label>
+                              <frontend_type>select</frontend_type>
+                              <source_model>adminhtml/system_config_source_allregion</source_model>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </state_id>
+                            <state translate="label">
+                              <label>State</label>
+                              <frontend_type>text</frontend_type>
+                              <sort_order>0</sort_order>
+                              <show_in_default>1</show_in_default>
+                              <show_in_website>1</show_in_website>
+                              <show_in_store>1</show_in_store>
+                            </state>
+               </fields>
+             </shipping_sender>
+             <email translate="label">
+                    <label>Email Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>30</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <label transaction="label">
+                            <label>Email template with credit code sent to recipients</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>50</sort_order>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </label>
+                        <order transaction="label">
+                            <label>Email template with verification code sent to credit sender</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>70</sort_order>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </order>
+                        <invoice transaction="label">
+                            <label>Email template notifying customers</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </invoice>
+                    </fields>
+                </email>
+					</groups>
+		</retailerkittools>
+	  </sections>
+</config>

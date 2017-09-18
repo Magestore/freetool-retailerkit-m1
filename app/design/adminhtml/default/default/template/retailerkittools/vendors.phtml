@@ -1,0 +1,56 @@
+<div class="page-title">
+	<h3 style="float: left;"><?php echo $this->__('Vendors') ?> </h3>
+	<a href="<?php echo $this->getUrl('retailerkittools/index/addvendor') ?>" class="btn btn-primary btn-md pull-right"><?php echo $this->__('Add New Vendor') ?></a>
+</div>
+
+<?php echo $this->getPagerHtml() ?> <!--Add Paging-->
+<div class="table-responsive">
+	<table id="vendor-table" class="table">
+		<colgroup>
+			<col width="1">
+			<col>
+			<col width="1">
+			<col width="1">
+			<col>
+		</colgroup>
+		<thead>
+			<tr class="first last">
+				<th><?php echo $this->__('No.')?></th>
+				<th><?php echo $this->__('Name')?></th>
+				<th><?php echo $this->__('Email')?></th>
+				<th><?php echo $this->__('Phone')?></th>
+				<th><?php echo $this->__('Address')?></th>
+				<th><?php echo $this->__('City')?></th>
+				<th><?php echo $this->__('Country')?></th>
+				<th><?php echo $this->__('Zip/Postcode')?></th>
+				<th><?php echo $this->__('State/Province')?></th>
+				<th><?php echo $this->__('Action')?></th>
+			</tr>
+		</thead>
+		<tbody>
+		<?php foreach($this->getCollection() as $vendor): ?>
+			<?php
+				if($vendor->getVendorState() != ''){
+					$vendorProvince = $vendor->getVendorState();					
+				}else{
+					$vendorRegion = Mage::getModel('directory/region')->load($vendor->getVendorStateId());
+					$vendorProvince = $vendorRegion->getName();
+				}
+			?>
+			<tr>
+				<td><?php echo $vendor->getId();?></td>
+				<td><?php echo $vendor->getVendorName()?></td>
+				<td><?php echo $vendor->getVendorEmail()?></td>
+				<td><?php echo $vendor->getVendorPhone()?></td>
+				<td><?php echo $vendor->getVendorAddress()?></td>
+				<td><?php echo $vendor->getVendorCity()?></td>
+				<td><?php echo Mage::app()->getLocale()->getCountryTranslation($vendor->getVendorCountry()); ?></td>
+				<td><?php echo $vendor->getVendorZipcode()?></td>
+				<td><?php echo $vendorProvince ?></td>
+				<td><a href="<?php echo $this->getUrl('retailerkittools/index/editvendor/id/'.$vendor->getId()) ?>"><?php echo $this->__('Edit')?></a></td>
+			</tr>
+		<?php endforeach ?>
+		</tbody>
+	</table>
+</div>
+<script type="text/javascript">decorateTable('vendor-table')</script>

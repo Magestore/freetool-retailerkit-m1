@@ -1,0 +1,73 @@
+<section class="section section--border" id="ToolContent">
+  	<div class="page-width">
+		<div class="form-section">
+         	<div class="section-heading">
+            	<h1 class="section-heading__heading heading--1"><?php echo $this->__('Barcode Maker') ?></h1>
+         	</div>
+      	</div>
+  		<!-- <form id="FromCreateBarcode" class="js-form-validate js-submit-async" data-validation-event="Barcode" data-tool="barcode" action="<?php //echo $this->getUrl('retailerkittools/index/barcode') ?>" accept-charset="UTF-8" method="post" novalidate=""> -->
+        <div class="section-block col-md-3"></div>
+  		<div class="section-block col-md-6 calculator-paypal-fee">
+	  		<form id="FormCreateBarcode" enctype="multipart/form-data"  accept-charset="UTF-8" novalidate="">   
+	    		<div class="form-section col-md-12">
+		      		<div class="section-input-field col-md-12">
+		      			<div class="form-input-inline">
+				  			<div class="form-group col-md-12">
+				  				<input type="text" name="query" id="query" placeholder="ie. 123456789" maxlength="30" class="form-control required-entry">
+				  			</div>
+				  		</div>
+		       		</div>
+		       		<div class="section-input-field col-md-12">
+		      			<div class="form-input-inline">
+				  			<div class="form-group col-md-12">
+					      		<button name="button" type="button" class="btn btn-primary btn-lg pull-right" id="Submit" onclick="createBarcode()">Submit</button>
+					      		<p class="form-help-text">Generate your barcode</p>
+					      	</div>
+					    </div>
+					</div>
+	    		</div>
+			</form>
+		</div>
+        <div class="section-block col-md-3"></div>
+		<!-- <div class="section-upload col-md-4">
+	        <img id="barcode-img" src="" alt="">
+		</div>   -->
+  	</div>
+</section>
+<script type="text/javascript">
+	//<![CDATA[
+    var formId = 'FormCreateBarcode';
+    var myForm = new VarienForm(formId, true);
+    var postUrl = '<?php echo $this->getUrl("retailerkittools/index/barcode") ?>';
+    function createBarcode() {
+        if (myForm.validator.validate()) {
+            new Ajax.Updater(
+                { success:'formSuccess' }, postUrl, {
+                    method:'post',
+                    asynchronous:true,
+                    evalScripts:false,
+                    onComplete:function(request, json) { 
+                    	if (request.responseText.isJSON()) {
+		                    var res = request.responseText.evalJSON();
+		                    var barcodeimg = res.urlImage;
+		                    // console.log(barcodeimg);
+		      				// $('barcode-img').src = barcodeimg;
+		      				newWindow = window.open(barcodeimg);
+                            newWindow.print();
+                            // newWindow.close();
+		                }
+                    },
+                    onLoading:function(request, json){
+                    },
+                    parameters: $(formId).serialize(true),
+                }
+            );
+        }
+    }
+    
+    new Event.observe(formId, 'submit', function(e){
+        e.stop();
+        createBarcode();
+    });
+    //]]>
+</script>

@@ -1,0 +1,74 @@
+<?php 
+	$senderData = $this->getSenderData();
+	$receiverData = $this->getReceiverData();
+	$shipping_date = $this->getShippingDate();
+	$tracking_number = $this->getTrackingNumber();
+	$weight = $this->getWeight();
+	if($senderData['province_id']){
+		$senderRegion = Mage::getModel('directory/region')->load($senderData['province_id']);
+		$senderProvince = $senderRegion->getName();
+	}
+	if($receiverData['province_id']){
+		$receiverRegion = Mage::getModel('directory/region')->load($receiverData['province_id']);
+		$receiverProvince = $receiverRegion->getName();
+	}
+?>
+<div class="preview preview--bordered">
+  <div class="preview__content">
+    
+  <div class="pdf-container" style="font-size: 1em">
+  <div class="pdf-section sender">
+    <div class="pdf-section--left" style="width: 50%; float: left;">
+      <h5>From:</h5>
+      <p><?php echo $senderData['first_name'].' '.$senderData['last_name']?><br>
+        <?php echo $senderData['address']?><br>
+        <?php echo $senderData['city'] ?>,
+      	<?php if($senderData['province']){
+      		echo $senderData['province'];
+      	}else{
+      		echo $senderProvince;
+      	}
+      	?>,
+      	<?php echo $senderData['zip'] ?><br>
+        <?php echo Mage::app()->getLocale()->getCountryTranslation($senderData['country']); ?><br>
+        <?php echo $senderData['email'] ?><br>
+      </p>
+    </div>
+    <div class="pdf-section--right shipping-meta" style="width: 50%; float: right;text-align: right;">
+      <div class="heading--5 pdf__heading">Ship Date: <?php echo $shipping_date ?></div>
+
+        <div class="heading--5 pdf__heading">Weight: <?php echo $weight ?></div>
+
+      <div class="tracking-number">
+          <h5>Tracking #: <?php echo $tracking_number ?></h5>
+      </div>
+      <img src="<?php echo $this->getBarcodeUrl() ?>" style="float: right">
+    </div>
+  </div>
+
+  <div class="receiver" style="margin: 0 auto; clear: both; max-width: 450px;font-size: 1.6em; padding-top: 50px">
+    <div class="pdf-section--left receiver__to" style="float: left;">To:</div>
+    <p class="receiver__address" style="margin-left: 50px">
+      <?php echo $receiverData['first_name'].' '.$receiverData['last_name']?><br>
+        <?php echo $receiverData['address']?><br>
+        <?php echo $receiverData['city'] ?>,
+      	<?php if($receiverData['province']){
+      		echo $receiverData['province'];
+      	}else{
+      		echo $receiverProvince;
+      	}
+      	?>,
+      	<?php echo $receiverData['zip'] ?><br>
+        <?php echo Mage::app()->getLocale()->getCountryTranslation($receiverData['country']); ?><br>
+        <?php echo $receiverData['email'] ?><br>
+    </p>
+  </div>
+</div>
+
+
+  </div>
+
+</div>
+<script type="text/javascript">
+  window.print();
+</script>

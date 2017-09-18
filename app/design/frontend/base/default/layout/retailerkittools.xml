@@ -1,0 +1,369 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <!-- <retailerkittools_dashboard_index>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="page_welcome" template="retailerkittools/dashboard.phtml">
+            </block>
+        </reference>
+    </retailerkittools_dashboard_index> -->
+    <!-- <retailerkittools_index_invoicegenerator>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params></params></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/invoicegenetor" name="invoicegenetor" template="retailerkittools/invoicegenetor.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_invoicegenerator> -->
+    <!-- <retailerkittools_index_purchaseorder>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params></params></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/purchaseorder" name="purchaseorder" template="retailerkittools/purchaseorder.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_purchaseorder> -->
+    <!-- <retailerkittools_index_printshippinglabel>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+            <action method="addItem"><type>js_css</type><name>calendar/calendar-win2k-1.css</name><params></params></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar.js</name></action>
+            <action method="addItem"><type>js</type><name>calendar/calendar-setup.js</name></action>
+            <block type="core/html_calendar" name="head.calendar" as="calendar" template="page/js/calendar.phtml"/>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/printshippinglabel" name="printshippinglabel" template="retailerkittools/printshippinglabel.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_printshippinglabel> -->
+   <!--  <retailerkittools_index_makebarcode>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/makebarcode" name="makebarcode" template="retailerkittools/makebarcode.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_makebarcode> -->
+   <!--  <retailerkittools_index_calcpaypalfee>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/calcpaypalfee" name="calcpaypalfee" template="retailerkittools/calcpaypalfee.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_calcpaypalfee> -->
+    <retailerkittools_index_printinvoice>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/invoice" name="create.invoice" template="retailerkittools/invoice.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_printinvoice>
+    <retailerkittools_index_showinvoice>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="show.invoice" template="retailerkittools/showinvoice.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_showinvoice>
+    <retailerkittools_index_showorder>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="show.order" template="retailerkittools/showorder.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_showorder>
+    <retailerkittools_index_showlabel>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/shippinglabel" name="show.label" template="retailerkittools/showlabel.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_showlabel>
+    <retailerkittools_index_printorder>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/order" name="create.order" template="retailerkittools/order.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_printorder>
+    <retailerkittools_index_shippinglabel>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/shippinglabel" name="create.invoice" template="retailerkittools/shippinglabel.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_shippinglabel>
+    <retailerkittools_index_barcode>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/barcode" name="create.invoice" template="retailerkittools/barcode.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_barcode>
+    <retailerkittools_index_showbarcode>
+        <remove name="header"/>
+        <remove name="footer"/>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/barcode" name="create.invoice" template="retailerkittools/showbarcode.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_showbarcode>
+   <!--  <retailerkittools_index_companyinfo>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/invoicegenetor" name="makebarcode" template="retailerkittools/companyinfo.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_companyinfo> -->
+   <!--  <retailerkittools_index_shippingsender>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/printshippinglabel" name="makebarcode" template="retailerkittools/shippingsender.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_shippingsender> -->
+    <!-- <retailerkittools_index_vendors>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/vendors" name="retailerkittools.vendor" template="retailerkittools/vendors.phtml">
+                <block type="page/html_pager" name="retailerkittools_pager"/>
+            </block>
+        </reference>
+    </retailerkittools_index_vendors> -->
+    <!-- <retailerkittools_index_editvendor>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/addvendor" name="retailerkittools.vendor" template="retailerkittools/addvendor.phtml">
+                <block type="page/html_pager" name="retailerkittools_pager"/>
+            </block>
+        </reference>
+    </retailerkittools_index_editvendor> -->
+   <!--  <retailerkittools_index_addvendor>
+        <remove name="header"/>
+        <reference name="footer">
+            <action method="setTemplate"><template>retailerkittools/footer.phtml</template></action>
+        </reference>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>magestore/retailerkittools/bootstrap.min.js</script>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/bootstrap.min.css</styleSheet>
+            </action>
+            <action method="addCss">
+                <styleSheet>css/magestore/retailerkittools/retailerkittools.css</styleSheet>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="retailerkittools/addvendor" name="retailerkittools.vendor" template="retailerkittools/addvendor.phtml">
+            </block>
+        </reference>
+    </retailerkittools_index_addvendor> -->
+</layout>

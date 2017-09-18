@@ -1,0 +1,86 @@
+<?php 
+ 	$vendor = $this->getVendorData();
+ 	if($vendor->getId()){
+ 		$title = $this->__('Edit Vendor Information');
+ 	}else{
+ 		$title = $this->__('New Vendor');
+ 	}
+ 	
+?>
+<section class="section section--border" id="ToolContent">
+  	<div class="page-width">
+		<div class="form-section">
+		  	<div class="section-heading">
+		    	<h1 class="section-heading__heading heading--1"><?php echo $title ?></h1>
+			</div>
+		</div>
+	</div>
+	<form id="vendor-form" enctype="multipart/form-data" action="<?php echo $this->getUrl('retailerkittools/index/savevendor') ?>" accept-charset="UTF-8" method="post" novalidate="">
+		<input type="text" name="vendor_id" class="hidden" value="<?php echo $vendor->getId() ?>">
+		<div class="form-section col-md-12">
+			<div class="form-header">
+		    	<h3 class="form-header__heading"><?php echo $this->__('Enter vendor information') ?></h3>      
+			</div>
+			<div class="section-input-field col-md-8">
+				<div class="form-input-inline">
+					<div class="form-group col-md-6">
+						<input type="text" name="vendor_name" id="vendor_name" value="<?php echo $vendor->getVendorName() ?>" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Vendor\'s name') ?>">
+					</div>
+					<div class="form-group col-md-6">
+						<input type="text" name="vendor_email" id="vendor_email" value="<?php echo $vendor->getVendorEmail() ?>" class="form-control required-entry validate-email col-md-12" placeholder="<?php echo $this->__('Vendor\'s email') ?>">
+					</div>
+				</div>
+				<div class="form-input-inline">
+					<div class="form-group col-md-12">
+						<input type="text" name="vendor_address" id="vendor_address" value="<?php echo $vendor->getVendorAddress() ?>" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Address') ?>">
+					</div>
+				</div>
+				
+			</div>
+			<div class="section-invoice col-md-4">
+				<div class="form-group col-md-12">
+					<input type="text" name="vendor_phone" id="vendor_phone" value="<?php echo $vendor->getVendorPhone() ?>" class="form-control required-entry" placeholder="<?php echo $this->__('Phone number') ?>">
+			  	</div>
+			  	<div class="form-group col-md-12">
+						<input type="text" name="vendor_city" id="vendor_city" value="<?php echo $vendor->getVendorCity() ?>" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('City') ?>">
+					</div>
+			</div>
+			<div class="section-input-field col-md-8">	
+				<div class="form-input-inline">		
+					<div class="form-group col-md-6">
+						<input type="text" name="vendor_zipcode" id="vendor_zipcode" value="<?php echo $vendor->getVendorZipcode() ?>" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Zip/postal code') ?>">
+					</div>
+					<div class="form-group col-md-6">
+						<?php echo $this->getCountryHtmlSelectForVendor() ?>
+					</div>
+				</div>
+			</div>
+			<div class="section-input-field col-md-4">	
+				<div class="form-input-inline">	
+					<div class="form-group col-md-12">
+						<div class="input-box">
+		                    <select id="vendor_province_id" name="vendor_state_id" title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="validate-select" style="display:none;">
+		                       <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+		                    </select>
+		                    <script type="text/javascript">
+		                    //<![CDATA[
+		                        $('vendor_province_id').setAttribute('defaultValue',  "<?php echo $vendor->getVendorStateId() ?>");
+		                    //]]>
+		                    </script>
+		                    <input type="text" id="vendor_province" name="vendor_state" value="<?php echo $vendor->getVendorState(); ?>"  title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
+		                </div>
+					</div>
+				</div>		  	
+			</div>
+			<div class="form-section col-md-12">
+   				<input type="submit" value="Save" class="btn btn-primary btn-lg pull-right">
+   			</div>
+		</div>
+	</form>
+</section>
+<script type="text/javascript">
+//<![CDATA[
+    var orderForm = new VarienForm('vendor-form');
+    new RegionUpdater('vendor_country', 'vendor_province', 'vendor_province_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+//]]>
+</script>

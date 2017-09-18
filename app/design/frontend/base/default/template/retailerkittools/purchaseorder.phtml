@@ -1,0 +1,525 @@
+<?php
+	$helper = Mage::helper('retailerkittools'); 
+	$imgPath = Mage::getBaseUrl('media') . 'barcode/' .$helper->getRetailerKitToolsConfig('company','company_logo');
+
+	$currency_code = Mage::app()->getStore()->getCurrentCurrencyCode();
+ 	$currency_symbol = Mage::app()->getLocale()->currency( $currency_code )->getSymbol();
+
+ 	// zend_debug::dump($this->getVendors());
+?>
+<section class="section section--border" id="ToolContent">
+  <div class="page-width">
+<div class="form-section">
+  <div class="section-heading">
+    <h1 class="section-heading__heading heading--1"><?php echo $this->__('Easy Purchase Order') ?></h1>
+</div>
+</div>
+<form id="PurchaseOrderForm" enctype="multipart/form-data" action="<?php echo $this->getUrl('retailerkittools/index/printorder') ?>" accept-charset="UTF-8" method="post" novalidate="">
+<!-- <form id="PurchaseOrderForm" enctype="multipart/form-data"  accept-charset="UTF-8" novalidate="">    -->
+<div class="form-section col-md-12">
+  	<div class="form-header">
+    	<h3 class="form-header__heading"><?php echo $this->__('Enter your company information') ?></h3>      
+		<div class="form-header__status step-counter">
+		  <span class="step-counter__label heading--5">
+		    <?php echo $this->__('Step 1 of 4') ?>
+		  </span>
+		  <span class="step-counter__dots dots-container">
+		      <span class="dots-container__dot dots-container__dot--active"></span>
+		      <span class="dots-container__dot "></span>
+		      <span class="dots-container__dot "></span>
+		  </span>
+		</div>
+	</div>
+	<div class="section-input-field col-md-8">
+		<div class="form-input-inline">
+			<div class="form-group col-md-6">
+				<input type="text" name="company[company_name]" id="company_name" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_name') ?>" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Company name') ?>">
+			</div>
+			<div class="form-group col-md-6">
+				<input type="text" name="company[email]" id="company_email" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_email') ?>" class="form-control required-entry col-md-12 validate-email" placeholder="<?php echo $this->__('Email address') ?>">
+			</div>
+		</div>
+		<div class="form-input-inline">
+			<div class="form-group col-md-12">
+				<input type="text" name="company[address]" id="company_address" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_address') ?>" class="form-control required-entry" placeholder="<?php echo $this->__('Address') ?>">
+			</div>
+		</div>
+		<div class="form-input-inline">
+			<div class="form-group col-md-6">
+				<input type="text" name="company[city]" id="company_city" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_city') ?>" class="form-control required-entry" placeholder="<?php echo $this->__('City') ?>">
+			</div>
+			<div class="form-group col-md-6">
+				<input type="text" name="company[zipcode]" id="company_zipcode" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_zipcode') ?>" class="form-control required-entry" placeholder="<?php echo $this->__('Zip/Postcode') ?>">
+			</div>
+		</div>
+		<div class="form-input-inline">
+			<div class="form-group col-md-6">
+				<?php echo $this->getCountryHtmlSelect() ?>
+			</div>
+			<div class="form-group col-md-6">
+                <div class="input-box">
+                    <select id="company_province_id" name="company[province_id]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="validate-select" style="display:none;">
+                       <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                    </select>
+                    <script type="text/javascript">
+                    //<![CDATA[
+                        $('company_province_id').setAttribute('defaultValue',  "<?php echo $helper->getRetailerKitToolsConfig('company', 'company_state_id') ?>");
+                    //]]>
+                    </script>
+                    <input type="text" id="company_province" name="company[province]" value="<?php echo $helper->getRetailerKitToolsConfig('company', 'company_state') ?>"  title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
+                </div>
+			</div>
+		</div>
+	</div>
+	<div class="section-upload col-md-4">
+		<div class="muted-box-container--logo-upload muted-box-container">
+		  <div class="muted-box__content">
+		      <div class="muted-box__icon-container">
+		        <img class="announcement-image " src="<?php echo $imgPath; ?>" alt="">
+		      </div>		      
+		          <p><?php echo $this->__('Add your logo by browsing from your device. (allow png, gif, jpeg, jpg)') ?></p>
+		          <input type="file" name="company_logo" class="file-upload" >
+		          <input type="text" name="company_logo" class="hidden" value="<?php echo $imgPath ?>">
+		  </div>
+		</div>
+	</div> 
+	<div class="checkbox col-md-12">
+	  <label><input type="checkbox" name="ship_to_company_address" id="ship_to_company_address" checked="checked">Ship to company address</label>
+	</div> 
+	<div class="js-shipping-form form-section" style="display: none;" id="ship_to_company_address_form">
+  		<div class="form-header">
+    		<h3 class="form-header__heading"><?php echo $this->__('Enter shipping information') ?></h3>
+  		</div>
+  		<div class="section-input-field col-md-12">
+  			<div class="form-input-inline">
+				<div class="form-group col-md-4">
+					<input type="text" name="receiver[company_name]" id="receiver_company_name" class="form-control" placeholder="<?php echo $this->__('Enter shipping information') ?>" >
+				</div>
+			</div>
+			<div class="form-input-inline">
+				<div class="form-group col-md-4">
+					<input type="email" name="receiver[email]" id="receiver_email" class="form-control required-entry validate-email" placeholder="Email address">
+				</div>
+			</div>
+			<div class="form-input-inline">
+				<div class="form-group col-md-4">
+					<input type="tel" name="receiver[phone_number]" id="receiver_phone_number" class="form-control" placeholder="Phone number">
+				</div>
+			</div>
+			
+		</div>
+		<div class="section-input-field col-md-12">
+			<div class="form-input-inline">
+				<div class="form-group col-md-8">
+					<input type="text" name="receiver[address]" id="receiver_address" class="form-control" placeholder="Address">
+				</div>
+			</div>
+			<div class="form-input-inline">
+				<div class="form-group col-md-4">
+					<input type="text" name="receiver[city]" id="receiver_city" class="form-control" placeholder="City">
+				</div>
+			</div>
+		</div>
+		<div class="section-input-field col-md-12">
+			<div class="form-input-inline">
+				<div class="form-group col-md-4">
+					<input type="text" name="receiver[zipcode]" id="receiver_zip" class="form-control" placeholder="Zip/postal code">
+				</div>
+			</div>
+			<div class="form-input-inline">
+				<div class="form-group col-md-4">
+					<?php echo $this->getCountryHtmlSelectForReceiver() ?>
+				</div>
+			</div>
+			<div class="form-input-inline">
+				<div class="form-group col-md-4">
+					<div class="input-box">
+                    <select id="receiver_province_id" name="receiver[province_id]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="validate-select" style="display:none;">
+                       <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                    </select>
+                    <script type="text/javascript">
+                    //<![CDATA[
+                        $('receiver_province_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
+                    //]]>
+                    </script>
+                    <input type="text" id="receiver_province" name="receiver[province]" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"  title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="input-text" />
+                </div>
+				</div>
+			</div>
+		</div>	    
+  	</div>
+</div>
+
+<div class="form-section col-md-12">
+	<div class="form-header">
+		<h3 class="form-header__heading"><?php echo $this->__('Enter vendor information') ?></h3>    
+		<div class="form-header__status step-counter">
+			<span class="step-counter__label heading--5"><?php $this->__('Step 2 of 4') ?></span>
+			<span class="step-counter__dots dots-container">
+				<span class="dots-container__dot dots-container__dot--active"></span>
+				<span class="dots-container__dot dots-container__dot--active"></span>
+				<span class="dots-container__dot "></span>
+			</span>
+		</div>
+    </div>
+	<div class="section-input-field col-md-12">
+		<div class="form-input-inline">
+			<div class="form-group col-md-4">
+				<!-- <input type="text" name="vendor[vendor_name]" id="vendor_name" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Vendor\'s name') ?>"> -->
+				<select name="vendor[vendor_name]" id="vendor_name" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Vendor\'s name') ?>" onchange="changeVendor(this, '<?php echo $this->getUrl('retailerkittools/index/changevendor') ?>')" >
+						<option value=""><?php echo $this->__(' Please select a vendor') ?></option>
+					<?php foreach ($this->getVendors() as $key => $vendor) { //zend_debug::dump($vendor); die;?>
+						<option value="<?php echo $key ?>"><?php echo $vendor['label'] ?></option>
+					<?php } ?>
+				</select>
+			</div>
+			<div class="form-group col-md-4">
+				<input type="text" name="vendor[vendor_email]" id="vendor_email" class="form-control required-entry validate-email col-md-12" placeholder="<?php echo $this->__('Vendor\'s email') ?>">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="text" name="vendor[phone]" id="vendor_phone" value="" class="form-control required-entry" placeholder="<?php echo $this->__('Phone number') ?>">
+		  	</div>
+		</div>
+	</div>
+	<div class="section-input-field col-md-12">		
+		<div class="form-input-inline">
+			<div class="form-group col-md-8">
+				<input type="text" name="vendor[address]" id="vendor_address" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Address') ?>">
+			</div>
+			<div class="form-group col-md-4">
+				<input type="text" name="vendor[city]" id="vendor_city" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('City') ?>">
+			</div>
+		</div>
+		
+	</div>
+	<div class="section-input-field col-md-12">	
+		<div class="form-input-inline">		
+			<div class="form-group col-md-4">
+				<input type="text" name="vendor[zip]" id="vendor_zip" class="form-control required-entry col-md-12" placeholder="<?php echo $this->__('Zip/postal code') ?>">
+			</div>
+			<div class="form-group col-md-4">
+				<?php echo $this->getCountryHtmlSelectForVendor() ?>
+			</div>
+			<div class="form-group col-md-4">
+				<div class="input-box">
+                    <select id="vendor_province_id" name="vendor[province_id]" title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="validate-select" style="display:none;">
+                       <option value=""><?php echo $this->__('Please select region, state or province') ?></option>
+                    </select>
+                    <script type="text/javascript">
+                    //<![CDATA[
+                        $('vendor_province_id').setAttribute('defaultValue',  "<?php echo $this->getAddress()->getRegionId() ?>");
+                    //]]>
+                    </script>
+                    <input type="text" id="vendor_province" name="vendor[province]" value="<?php echo $this->escapeHtml($this->getAddress()->getRegion()) ?>"  title="<?php echo Mage::helper('core')->quoteEscape($this->__('State/Province')) ?>" class="input-text <?php echo $this->helper('customer/address')->getAttributeValidationClass('region') ?>" />
+                </div>
+			</div>
+		</div>		  	
+	</div>
+</div>
+
+<div class="form-section col-md-12">
+   <div class="form-header">
+	    <h3 class="form-header__heading"><?php echo $this->__('Enter purchase order information') ?></h3>
+	    
+		<div class="form-header__status step-counter">
+		    <span class="step-counter__label heading--5"><?php echo $this->__('Step 3 of 4') ?>  </span>
+		    <span class="step-counter__dots dots-container">
+		        <span class="dots-container__dot dots-container__dot--active"></span>
+		        <span class="dots-container__dot dots-container__dot--active"></span>
+		        <span class="dots-container__dot dots-container__dot--active"></span>
+		        <span class="dots-container__dot "></span>
+		    </span>
+		</div>
+	</div>
+	<div class="section-input-field col-md-12">
+		<div class="form-input-inline">
+			<div class="form-group col-md-4">
+		    	<input type="text" name="order_number" id="order_number" class=" required-entry form-control" placeholder="Purchase order #" >
+		    </div>
+		    <div class="form-group col-md-4">
+		  		<input type="text" name="order_date" id="order_date" value="<?php echo date("Y-m-d")?>" class="form-control validate-date" title ="Purchase order date" placeholder="Purchase order date" >
+		  	</div>
+		  	<div class="form-group col-md-4">
+		    	<input type="text" name="delivery_date" id="delivery_date" value="<?php echo date("Y-m-d")?>" class="form-control validate-date" title="Delivery date" placeholder="Delivery date">
+		    </div>
+	    </div>
+	</div>
+
+	<div class="section-input-field col-md-12">
+		<div class="form-input-inline">
+			
+		    <div class="form-group col-md-4">
+		    	<input type="text" name="shipping_method" id="shipping_method" class="required-entry form-control" placeholder="Shipping method">
+		    </div>
+		    <div class="form-group col-md-8">
+		   		<textarea name="shipping_terms" id="shipping_terms" class="form-control" placeholder="<?php echo $this->__('Shipping terms') ?>" style="max-width: 100%;"></textarea>
+	   		</div>
+		</div>
+	</div>
+</div>
+
+    
+<div class="form-section col-md-12">
+	<div class="form-header">
+		<h3 class="form-header__heading"><?php echo $this->__('Enter the items you wish to bill') ?></h3>    
+		<div class="form-header__status step-counter">
+		    <span class="step-counter__label heading--5"><?php echo $this->__('Step 4 of 4') ?></span>
+		    <span class="step-counter__dots dots-container">
+		        <span class="dots-container__dot dots-container__dot--active"></span>
+		        <span class="dots-container__dot dots-container__dot--active"></span>
+		        <span class="dots-container__dot dots-container__dot--active"></span>
+		        <span class="dots-container__dot dots-container__dot--active"></span>
+		    </span>
+		</div>
+	</div>
+	<div class="section-input-field col-md-12">
+		<div class="form-inline line-item js-line-item">
+			<div class="form-group col-md-3">
+			    <input type="text" name="line_items[0][title]" id="line_items_0__title" class="form-control required-entry" placeholder="<?php echo $this->__('Item') ?>">
+			</div>
+			<div class="form-group col-md-5">
+			    <input type="text" name="line_items[0][description]" id="line_items_0__description" class="form-control" placeholder="<?php echo $this->__('Description') ?>">
+			</div>
+			<div class="form-group col-md-1">
+			    <input type="text" name="line_items[0][quantity]" id="line_items_0__quantity" min="0" data-parsley-type="number" class="form-control required-entry" placeholder="<?php echo $this->__('Qty') ?>" onkeyup="updateLineTotal(0)">
+			</div>
+			<div class="form-group col-md-1">
+			    <input type="text" name="line_items[0][price]" id="line_items_0__price" min="0" data-parsley-type="number" class="form-control required-entry" placeholder="<?php echo $this->__('Price') ?>" onkeyup="updateLineTotal(0)">
+			</div>
+			<div class="form-group col-md-1">
+			  	<div class="line-item__amount col-md-1">
+				    <span class="marketing-label"><?php echo $this->__('Amount') ?></span>
+				    <input type="text" name="line_items[0][amount]" id="line_items_0__amount" min="0" data-parsley-type="number" class="form-control hidden">
+				    <div class="heading--4 line-item__amount__total js-line-item-amount" id="js-line-item-amount-0">-</div>
+				    <div class="heading--4 line-item__amount__total js-line-item-amount-hidden hidden" id="js-line-item-amount-hidden-0"></div>
+			  	</div>
+			</div>
+			<div class="form-group col-md-1">
+			  	<button type="button" class="line-item__remove btn btn-default" onclick="removeItem(this)">
+				    <?php echo $this->__('Remove line item') ?>
+			  	</button>
+			</div>
+		</div>			
+	</div>
+	<div class="line-item__add col-md-12">    
+		<button type="button" class="js-line-item-trigger btn btn-default" id="AddLineItem" data-index="1">
+		  <?php echo $this->__('Add a line item') ?>
+		</button>
+	</div>
+</div>
+
+<div class="form-section col-md-12">
+	<div class="note-memo col-md-8">
+		<div class="form-group">
+			<label class=""><?php echo $this->__('Notes / Memo') ?></label>
+			<textarea name="notes" id="notes" class="form-control"></textarea>
+		</div>
+	</div>
+	<div class="total-review col-md-4">
+		<div class="summary-grid">
+			<div class="summary-grid__items col-md-12">
+				<div class="summary-grid__row">
+					<h5 class="summary-grid__label col-md-8"><?php echo $this->__('Subtotal') ?></h5>					
+				    <input type="text" name="subtotal" id="subtotal" min="0" data-parsley-type="number" class="form-control hidden">
+					<span id="SubTotal" class="heading--4 summary-grid__value col-md-4">-</span>
+				</div>
+				<div class="summary-grid__row">
+					<div class="tax-label col-md-8">
+				    <span class="tax-label"><?php echo $this->__('Tax') ?><span id="rate-number"><?php echo $this->__('(13%)')?></span></span>
+				    <button type="button" class="btn btn-default" id="EditTaxButton"><?php echo $this->__('Edit') ?></button>
+				    </div>
+					<span id="Tax" class="heading--4 summary-grid__value col-md-4">-</span>
+				</div>
+				<div id="TaxInputContainer" class="hidden col-md-12">
+					<label class="marketing-input-wrapper"><?php echo $this->__('Tax rate') ?></label>
+					<input type="text" name="tax_rate" id="TaxRate" value="13" class="" placeholder="Tax rate">
+				</div>
+			</div>			
+			<div class="summary-grid__total col-md-12">
+				<h5 class="summary-grid__label col-md-8"><?php echo $this->__('Total') ?>
+				</h5>
+				<span id="Total" class="heading--3 summary-grid__value col-md-4">-</span>
+			</div>
+		</div>
+	    <div class="total-footer__submit-container col-md-12">
+	        <input type="submit" name="commit" value="Submit" class="btn btn-primary">
+	        <p><?php echo $this->__('Generate purchase order.') ?></p>
+	    </div>
+	</div>
+</div>
+
+</form>
+  </div>
+</section>
+
+<script type="text/javascript">
+//<![CDATA[
+    // var formId = 'PurchaseOrderForm';
+    // var myForm = new VarienForm(formId, true);
+    // var postUrl = '<?php echo $this->getUrl("retailerkittools/index/printorder") ?>';
+    // function doAjax() {
+    //     if (myForm.validator.validate()) {
+    //         new Ajax.Updater(
+    //             { success:'formSuccess' }, postUrl, {
+    //                 method:'post',
+    //                 asynchronous:true,
+    //                 evalScripts:false,
+    //                 onComplete:function(request, json) {
+    //                 	if (request.responseText.isJSON()) {
+    //                 var res = request.responseText.evalJSON();
+    //                 var printContents = res.html;
+				//      var originalContents = document.body.innerHTML;
+
+				//      document.body.innerHTML = printContents;
+
+				//      window.print();
+
+				//      document.body.innerHTML = originalContents;
+    //             }
+    //                     // Element.hide(formId);
+    //                     // Element.show('formSuccess');
+    //                 },
+    //                 onLoading:function(request, json){
+    //                     // Element.show('formLoader');
+    //                 },
+    //                 parameters: $(formId).serialize(true),
+    //             }
+    //         );
+    //     }
+    // }
+    
+    // new Event.observe(formId, 'submit', function(e){
+    //     e.stop();
+    //     doAjax();
+    // });
+    var orderForm = new VarienForm('PurchaseOrderForm');
+    new RegionUpdater('company_country', 'company_province', 'company_province_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+    new RegionUpdater('receiver_country', 'receiver_province', 'receiver_province_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+    new RegionUpdater('vendor_country', 'vendor_province', 'vendor_province_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+//]]>
+
+Calendar.setup({
+  inputField : 'order_date',
+  ifFormat : '%Y-%m-%d',
+  button : 'date_from_trig',
+  align : 'Bl',
+  singleClick : true
+  });
+
+Calendar.setup({
+  inputField : 'delivery_date',
+  ifFormat : '%Y-%m-%d',
+  button : 'date_from_trig',
+  align : 'Bl',
+  singleClick : true
+  });
+
+
+$('AddLineItem').observe('click', function(event){
+	var el = $(Event.element(event));
+	var inputs = el.up().previous('.section-input-field');
+	inputs.insert({
+	  bottom: '<div class="form-inline line-item js-line-item"><div class="form-group col-md-3"><input type="text" name="line_items['+el.readAttribute('data-index')+'][title]" id="line_items_'+el.readAttribute('data-index')+'__title" class="form-control required-entry" placeholder="<?php echo $this->__('Item') ?>"></div><div class="form-group col-md-5"><input type="text" name="line_items['+el.readAttribute('data-index')+'][description]" id="line_items_'+el.readAttribute('data-index')+'__description" class="form-control" placeholder="<?php echo $this->__('Description') ?>"></div><div class="form-group col-md-1"><input type="text" name="line_items['+el.readAttribute('data-index')+'][quantity]" id="line_items_'+el.readAttribute('data-index')+'__quantity" min="0" data-parsley-type="number" class="form-control required-entry" placeholder="<?php echo $this->__('Qty') ?>" onkeyup="updateLineTotal('+el.readAttribute('data-index')+')"></div><div class="form-group col-md-1"><input type="text" name="line_items['+el.readAttribute('data-index')+'][price]" id="line_items_'+el.readAttribute('data-index')+'__price" min="0" data-parsley-type="number" class="form-control required-entry" placeholder="<?php echo $this->__('Price') ?>" onkeyup="updateLineTotal('+el.readAttribute('data-index')+')"></div><div class="form-group col-md-1"><div class="line-item__amount col-md-1"><span class="marketing-label"><?php echo $this->__('Amount') ?></span><input type="text" name="line_items['+el.readAttribute('data-index')+'][amount]" id="line_items_'+el.readAttribute('data-index')+'__amount" min="0" data-parsley-type="number" class="form-control required-entry hidden" placeholder="<?php echo $this->__('Amount') ?>"><div class="heading--4 line-item__amount__total js-line-item-amount" id="js-line-item-amount-'+el.readAttribute('data-index')+'">-</div><div class="heading--4 line-item__amount__total js-line-item-amount-hidden hidden" id="js-line-item-amount-hidden-'+el.readAttribute('data-index')+'"></div></div></div><div class="form-group col-md-1"><button type="button" class="line-item__remove btn btn-default" onclick="removeItem(this)"><?php echo $this->__('Remove line item') ?></button></div></div>'
+	});
+	el.writeAttribute('data-index', Number.parseInt(el.readAttribute('data-index'))+1);
+});
+
+function removeItem(el){
+	el.up('.js-line-item').remove();
+	updateTotal();
+}
+function updateLineTotal(index){
+	var amount = 0;
+	var subtotal = 0;
+	var qty = 0;
+	var price = 0;
+	var symbol = '<?php echo $currency_symbol ?>';
+	if($('line_items_'+index+'__quantity').value)
+		qty = Number.parseInt($('line_items_'+index+'__quantity').value);
+	if($('line_items_'+index+'__price').value)
+		price = Number.parseFloat($('line_items_'+index+'__price').value);
+	amount = qty * price;
+	$('line_items_'+index+'__amount').value = amount;
+	$('js-line-item-amount-'+index).update(symbol+amount);
+	$('js-line-item-amount-hidden-'+index).update(amount);
+	updateTotal();
+}
+function updateTotal(){
+	var subtotal = 0;
+	var taxrate = 0;
+	var tax = 0;
+	var symbol = '<?php echo $currency_symbol ?>';
+	$$('.js-line-item-amount-hidden').each(function(el){
+		var linetotal = 0;
+		if(!isNaN(Number.parseFloat(el.innerHTML)))
+			linetotal = Number.parseFloat(el.innerHTML);
+		subtotal += linetotal;
+	});	
+	taxrate = Number.parseFloat($('TaxRate').value/100); 
+	tax = Number(Math.round((subtotal * taxrate)+'e'+2)+'e-'+2);
+	$('Tax').update(symbol+tax);
+	$('SubTotal').update(symbol+subtotal);
+	$('subtotal').value = subtotal;
+	$('Total').update(symbol+Number(Math.round((tax+subtotal)+'e'+2)+'e-'+2));
+}
+$('EditTaxButton').observe('click', function(event){
+	if($('TaxInputContainer').hasClassName('hidden')){
+		$('TaxInputContainer').removeClassName('hidden');
+		$('EditTaxButton').update('Close');
+	}else{
+		$('TaxInputContainer').addClassName('hidden');	
+		$('EditTaxButton').update('Edit');	
+	}
+});
+$('TaxRate').observe('keyup',function(event){
+	var el = $(Event.element(event));
+	$('rate-number').update('('+el.value+'%)');
+	updateTotal();
+});
+$('ship_to_company_address').observe('click', function(e) {
+    var checked = this.checked;
+    if(checked){
+    	$('ship_to_company_address_form').hide();
+    }else{
+    	$('ship_to_company_address_form').show();
+    }
+});
+
+function changeVendor(el, url){
+	var vendorid = el.value;
+	new Ajax.Updater(
+        { success:'formSuccess' }, url, {
+            method:'post',
+            parameters: { vendorid: vendorid },
+            onComplete:function(request, json) {
+            	if (request.responseText.isJSON()) {
+		            var res = request.responseText.evalJSON();
+		            $('vendor_email').value = res.vendor_email;
+		            $('vendor_country').value = res.vendor_country;
+		            $('vendor_city').value = res.vendor_city;
+		            $('vendor_phone').value = res.vendor_phone;
+		            $('vendor_country').value = res.vendor_country;
+		            $('vendor_zip').value = res.vendor_zipcode;
+		            var event = new Event('change');
+                    $('vendor_country').dispatchEvent(event);
+		            if(res.vendor_state) {
+			            $('vendor_province').value = res.vendor_state;
+			            $('vendor_province').show();
+		            	$('vendor_province_id').hide();
+			        }else{
+		            	$('vendor_province_id').value = res.vendor_state_id;
+		            	$('vendor_province_id').show();
+		            	$('vendor_province').hide();
+		            }
+		            $('vendor_address').value = res.vendor_address;
+		        }
+            },
+            onLoading:function(request, json){
+            }
+        }
+    );
+}
+Event.observe($('vendor_country'), 'change', function(e){ 
+   new RegionUpdater('vendor_country', 'vendor_province', 'vendor_province_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+});
+</script>
